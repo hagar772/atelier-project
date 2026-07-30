@@ -1,0 +1,1256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATELIER No.7 — Ready-to-Wear</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=Work+Sans:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* ============================================================
+     CONFIG — plug in your n8n webhook URLs here. See notes at
+     the bottom of this file for what each workflow should do.
+     ============================================================ */
+        
+         :root {
+            --canvas: #EDEAE1;
+            --canvas-dim: #E2DDCF;
+            --ink: #1E1B16;
+            --ink-soft: #5B5548;
+            --indigo: #2C3E63;
+            --indigo-dark: #1C2942;
+            --brass: #C99A2E;
+            --rust: #A13D2C;
+            --line: rgba(30, 27, 22, 0.16);
+            --paper: #F7F5EF;
+            --radius: 2px;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            margin: 0;
+            background: var(--canvas);
+            color: var(--ink);
+            font-family: 'Work Sans', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        h1,
+        h2,
+        h3,
+        .display {
+            font-family: 'Big Shoulders Display', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            font-weight: 800;
+            margin: 0;
+        }
+        
+        .mono {
+            font-family: 'Space Mono', monospace;
+        }
+        
+        a {
+            color: inherit;
+        }
+        
+        button {
+            font-family: inherit;
+            cursor: pointer;
+        }
+        
+        .wrap {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+        /* ---------- header ---------- */
+        
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 40;
+            background: var(--canvas);
+            border-bottom: 1px solid var(--line);
+        }
+        
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 32px;
+            max-width: 1180px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 26px;
+            letter-spacing: 0.04em;
+        }
+        
+        .logo span {
+            color: var(--rust);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            font-size: 14px;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            padding-bottom: 2px;
+            transition: border-color .2s;
+        }
+        
+        .nav-links a:hover {
+            border-color: var(--ink);
+        }
+        
+        .cart-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: none;
+            border: 1px solid var(--ink);
+            padding: 9px 14px;
+            font-size: 13px;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            border-radius: var(--radius);
+        }
+        
+        .cart-count {
+            background: var(--rust);
+            color: #fff;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-family: 'Space Mono', monospace;
+        }
+        /* ---------- hero ---------- */
+        
+        .hero {
+            padding: 90px 32px 70px;
+            max-width: 1180px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 50px;
+            align-items: end;
+        }
+        
+        .eyebrow {
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--ink-soft);
+            margin-bottom: 18px;
+            display: block;
+        }
+        
+        .hero h1 {
+            font-size: clamp(48px, 7vw, 92px);
+            line-height: 0.92;
+        }
+        
+        .hero h1 em {
+            font-style: normal;
+            color: var(--indigo);
+        }
+        
+        .hero p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--ink-soft);
+            max-width: 38ch;
+            margin-top: 22px;
+        }
+        
+        .hero-tag {
+            justify-self: end;
+            background: var(--paper);
+            border: 1px solid var(--line);
+            padding: 22px 26px;
+            position: relative;
+            max-width: 230px;
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            box-shadow: 0 10px 24px rgba(30, 27, 22, 0.08);
+        }
+        
+        .hero-tag::before {
+            content: '';
+            position: absolute;
+            top: -9px;
+            left: 24px;
+            width: 16px;
+            height: 16px;
+            background: var(--canvas);
+            border: 1px solid var(--line);
+            border-radius: 50%;
+        }
+        
+        .hero-tag::after {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: 29px;
+            width: 6px;
+            height: 6px;
+            background: var(--canvas);
+            border-radius: 50%;
+            box-shadow: 0 0 0 1px var(--line);
+        }
+        
+        .hero-tag b {
+            display: block;
+            font-family: 'Big Shoulders Display', sans-serif;
+            font-size: 20px;
+            margin-bottom: 6px;
+        }
+        /* ---------- section headers ---------- */
+        
+        .section-head {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            margin: 80px 0 34px;
+            padding-top: 26px;
+            border-top: 1px solid var(--line);
+        }
+        
+        .section-head h2 {
+            font-size: 34px;
+        }
+        
+        .section-head .count {
+            font-family: 'Space Mono', monospace;
+            font-size: 13px;
+            color: var(--ink-soft);
+        }
+        /* ---------- product grid ---------- */
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 26px;
+            padding-bottom: 20px;
+        }
+        
+        .card {
+            background: var(--paper);
+            border: 1px solid var(--line);
+            display: flex;
+            flex-direction: column;
+            transition: transform .18s ease, box-shadow .18s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 28px rgba(30, 27, 22, 0.10);
+        }
+        
+        .swatch {
+            aspect-ratio: 1/1.05;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid var(--line);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .swatch svg {
+            width: 56%;
+            height: 56%;
+        }
+        
+        .stock-flag {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            background: var(--rust);
+            color: #fff;
+            padding: 3px 7px;
+            border-radius: 2px;
+        }
+        
+        .stock-flag.ok {
+            background: var(--indigo);
+        }
+        
+        .card-body {
+            padding: 16px 16px 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            flex: 1;
+        }
+        
+        .card-body h3 {
+            font-size: 19px;
+        }
+        
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            color: var(--ink-soft);
+        }
+        
+        .price {
+            font-family: 'Space Mono', monospace;
+            font-weight: 700;
+            color: var(--ink);
+        }
+        
+        .add-btn {
+            margin-top: auto;
+            background: var(--ink);
+            color: var(--canvas);
+            border: none;
+            padding: 11px 0;
+            font-size: 12px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            border-radius: var(--radius);
+            transition: background .18s;
+        }
+        
+        .add-btn:hover {
+            background: var(--indigo);
+        }
+        
+        .add-btn:disabled {
+            background: var(--line);
+            color: var(--ink-soft);
+            cursor: not-allowed;
+        }
+        /* ---------- cart drawer (styled as a care label) ---------- */
+        
+        .overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(20, 18, 14, 0.4);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .25s;
+            z-index: 60;
+        }
+        
+        .overlay.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        .drawer {
+            position: fixed;
+            top: 0;
+            right: 0;
+            height: 100%;
+            width: 400px;
+            max-width: 92vw;
+            background: var(--paper);
+            z-index: 61;
+            transform: translateX(100%);
+            transition: transform .3s ease;
+            display: flex;
+            flex-direction: column;
+            border-left: 2px dashed var(--line);
+        }
+        
+        .drawer.open {
+            transform: translateX(0);
+        }
+        
+        .drawer-head {
+            padding: 24px 24px 16px;
+            border-bottom: 1px solid var(--line);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .drawer-head h2 {
+            font-size: 26px;
+        }
+        
+        .drawer-head button {
+            background: none;
+            border: none;
+            font-size: 22px;
+            line-height: 1;
+            color: var(--ink);
+        }
+        
+        .drawer-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 10px 24px;
+        }
+        
+        .drawer-item {
+            display: flex;
+            gap: 12px;
+            padding: 14px 0;
+            border-bottom: 1px solid var(--line);
+            align-items: center;
+        }
+        
+        .drawer-item .swatch-mini {
+            width: 56px;
+            height: 56px;
+            background: var(--canvas-dim);
+            border: 1px solid var(--line);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .drawer-item .swatch-mini svg {
+            width: 60%;
+            height: 60%;
+        }
+        
+        .di-info {
+            flex: 1;
+        }
+        
+        .di-info h4 {
+            margin: 0 0 4px;
+            font-size: 15px;
+            font-weight: 600;
+        }
+        
+        .di-info .mono {
+            font-size: 12px;
+            color: var(--ink-soft);
+        }
+        
+        .qty-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 6px;
+        }
+        
+        .qty-row button {
+            width: 22px;
+            height: 22px;
+            border: 1px solid var(--line);
+            background: var(--paper);
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .drawer-empty {
+            padding: 40px 0;
+            text-align: center;
+            color: var(--ink-soft);
+            font-size: 14px;
+        }
+        
+        .drawer-foot {
+            padding: 20px 24px 24px;
+            border-top: 1px solid var(--line);
+        }
+        
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 15px;
+            margin-bottom: 16px;
+        }
+        
+        .total-row b {
+            font-family: 'Space Mono', monospace;
+            font-size: 18px;
+        }
+        
+        .checkout-btn {
+            width: 100%;
+            background: var(--indigo);
+            color: #fff;
+            border: none;
+            padding: 14px 0;
+            font-size: 13px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            border-radius: var(--radius);
+        }
+        
+        .checkout-btn:hover {
+            background: var(--indigo-dark);
+        }
+        /* ---------- checkout form (modal) ---------- */
+        
+        .modal {
+            position: fixed;
+            inset: 0;
+            z-index: 70;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(20, 18, 14, 0.45);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .25s;
+            padding: 20px;
+        }
+        
+        .modal.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        .modal-card {
+            background: var(--paper);
+            max-width: 440px;
+            width: 100%;
+            padding: 30px;
+            position: relative;
+            max-height: 88vh;
+            overflow-y: auto;
+        }
+        
+        .modal-card h2 {
+            font-size: 26px;
+            margin-bottom: 4px;
+        }
+        
+        .modal-card .mono {
+            font-size: 12px;
+            color: var(--ink-soft);
+            display: block;
+            margin-bottom: 20px;
+        }
+        
+        .field {
+            margin-bottom: 14px;
+        }
+        
+        .field label {
+            display: block;
+            font-size: 12px;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--ink-soft);
+            margin-bottom: 5px;
+        }
+        
+        .field input,
+        .field textarea {
+            width: 100%;
+            border: 1px solid var(--line);
+            background: var(--canvas);
+            padding: 11px 12px;
+            font-family: 'Work Sans', sans-serif;
+            font-size: 14px;
+            border-radius: var(--radius);
+        }
+        
+        .field textarea {
+            resize: vertical;
+            min-height: 60px;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 18px;
+            background: none;
+            border: none;
+            font-size: 20px;
+        }
+        
+        .form-status {
+            font-size: 13px;
+            margin-top: 12px;
+            min-height: 18px;
+        }
+        
+        .form-status.err {
+            color: var(--rust);
+        }
+        
+        .form-status.ok {
+            color: var(--indigo);
+        }
+        /* ---------- footer ---------- */
+        
+        footer {
+            margin-top: 100px;
+            border-top: 1px solid var(--line);
+            padding: 40px 32px 30px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+            font-size: 13px;
+            color: var(--ink-soft);
+        }
+        
+        footer .mono {
+            font-size: 12px;
+        }
+        /* ---------- chatbot widget ---------- */
+        
+        #chatLauncher {
+            position: fixed;
+            bottom: 22px;
+            right: 22px;
+            z-index: 80;
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            background: var(--indigo);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            box-shadow: 0 10px 22px rgba(0, 0, 0, 0.28);
+            cursor: pointer;
+            border: none;
+        }
+        
+        #chatPanel {
+            position: fixed;
+            bottom: 22px;
+            right: 22px;
+            z-index: 81;
+            width: 340px;
+            max-width: 90vw;
+            height: 460px;
+            max-height: 75vh;
+            background: var(--paper);
+            border: 1px solid var(--line);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        #chatPanel.open {
+            display: flex;
+        }
+        
+        #chatHead {
+            background: var(--indigo);
+            color: #fff;
+            padding: 16px 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        
+        #chatHead b {
+            display: block;
+            font-family: 'Big Shoulders Display', sans-serif;
+            font-size: 18px;
+            letter-spacing: 0.03em;
+        }
+        
+        #chatHead span {
+            opacity: 0.75;
+            font-size: 11px;
+        }
+        
+        #chatHead button {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 20px;
+            line-height: 1;
+        }
+        
+        #chatLog {
+            flex: 1;
+            overflow-y: auto;
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .chat-msg {
+            max-width: 80%;
+            padding: 9px 12px;
+            font-size: 13.5px;
+            line-height: 1.4;
+            border-radius: 2px;
+        }
+        
+        .chat-msg.bot {
+            background: var(--canvas-dim);
+            align-self: flex-start;
+        }
+        
+        .chat-msg.user {
+            background: var(--indigo);
+            color: #fff;
+            align-self: flex-end;
+        }
+        
+        .chat-msg.pending {
+            opacity: 0.6;
+            font-style: italic;
+        }
+        
+        #chatForm {
+            display: flex;
+            border-top: 1px solid var(--line);
+        }
+        
+        #chatForm input {
+            flex: 1;
+            border: none;
+            padding: 12px 14px;
+            font-family: 'Work Sans', sans-serif;
+            font-size: 13.5px;
+            background: var(--paper);
+        }
+        
+        #chatForm input:focus {
+            outline: none;
+        }
+        
+        #chatForm button {
+            width: 46px;
+            border: none;
+            background: var(--ink);
+            color: var(--canvas);
+            font-size: 16px;
+        }
+        
+        @media (max-width:560px) {
+            #chatPanel {
+                width: 92vw;
+                right: 4vw;
+                bottom: 86px;
+            }
+        }
+        
+        @media (max-width:900px) {
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .hero {
+                grid-template-columns: 1fr;
+            }
+            .hero-tag {
+                justify-self: start;
+            }
+        }
+        
+        @media (max-width:560px) {
+            .nav-links {
+                display: none;
+            }
+            .grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 14px;
+            }
+            .wrap {
+                padding: 0 18px;
+            }
+            .hero {
+                padding: 60px 18px 40px;
+            }
+            .section-head {
+                margin: 60px 0 24px;
+            }
+        }
+        
+         :focus-visible {
+            outline: 2px solid var(--indigo);
+            outline-offset: 2px;
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                transition: none !important;
+                scroll-behavior: auto !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <nav class="nav">
+            <div class="logo display">ATELIER <span>N°7</span></div>
+            <div class="nav-links">
+                <a href="#shop">Shop</a>
+                <a href="#about">Fabric &amp; Care</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <button class="cart-btn" id="openCart" aria-haspopup="dialog">
+      Bag <span class="cart-count mono" id="cartCount">0</span>
+    </button>
+        </nav>
+    </header>
+
+    <section class="hero wrap" style="padding-left:0;padding-right:0;">
+        <div>
+            <span class="eyebrow">SS26 CAPSULE — CUT TO ORDER</span>
+            <h1>Wardrobe<br>staples, <em>made<br>to last.</em></h1>
+            <p>Six pieces, honestly priced, cut from fabric we're proud to name. Stock updates live from our own inventory floor — no phantom sizes, no waitlists.</p>
+        </div>
+        <div class="hero-tag">
+            <b>CARE LABEL</b> STOCK: LIVE SYNC<br> ORDERS: NOTIFIED IN REAL TIME<br> SUPPORT: CHAT, LOWER RIGHT
+        </div>
+    </section>
+
+    <div class="wrap" id="shop">
+        <div class="section-head">
+            <h2>The Rack</h2>
+            <span class="count mono" id="stockNote">checking stock…</span>
+        </div>
+        <div class="grid" id="productGrid">
+            <!-- injected by JS -->
+        </div>
+    </div>
+
+    <div class="wrap" id="about" style="padding-bottom:20px;">
+        <div class="section-head" style="margin-top:20px;">
+            <h2>Fabric &amp; Care</h2>
+        </div>
+        <p style="max-width:60ch;color:var(--ink-soft);line-height:1.7;">Every piece is finished in small batches so our stock sheet stays honest — what you see in the rack above is checked against our floor inventory, not a forecast. Machine wash cold, hang to dry, and it'll outlast the season.</p>
+    </div>
+
+    <footer id="contact">
+        <div>
+            <div class="logo display" style="font-size:20px;">ATELIER <span>N°7</span></div>
+            <p class="mono">hello@atelier7.example · Mon–Fri 9–6</p>
+        </div>
+        <div class="mono">© 2026 Atelier N°7. Built for the automation final project.</div>
+    </footer>
+
+    <!-- ================= CART DRAWER ================= -->
+    <div class="overlay" id="overlay"></div>
+    <aside class="drawer" id="drawer" role="dialog" aria-label="Shopping bag">
+        <div class="drawer-head">
+            <h2>Your Bag</h2>
+            <button id="closeDrawer" aria-label="Close bag">×</button>
+        </div>
+        <div class="drawer-items" id="drawerItems"></div>
+        <div class="drawer-foot">
+            <div class="total-row"><span>Subtotal</span><b class="mono" id="cartTotal">$0.00</b></div>
+            <button class="checkout-btn" id="openCheckout">Checkout</button>
+        </div>
+    </aside>
+
+    <!-- ================= CHECKOUT MODAL ================= -->
+    <div class="modal" id="checkoutModal" role="dialog" aria-label="Checkout">
+        <div class="modal-card">
+            <button class="modal-close" id="closeCheckout">×</button>
+            <h2>Confirm Order</h2>
+            <span class="mono">Sent straight to the prep team.</span>
+            <form id="orderForm">
+                <div class="field"><label for="custName">Full name</label><input id="custName" required></div>
+                <div class="field"><label for="custEmail">Email</label><input id="custEmail" type="email" required></div>
+                <div class="field"><label for="custPhone">Phone</label><input id="custPhone" required></div>
+                <div class="field"><label for="custAddress">Delivery address</label><textarea id="custAddress" required></textarea></div>
+                <button type="submit" class="checkout-btn">Place order</button>
+                <div class="form-status" id="formStatus"></div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ================= SUPPORT CHAT WIDGET ================= -->
+    <div id="chatLauncher" aria-label="Open support chat">💬</div>
+    <div id="chatPanel" role="dialog" aria-label="Support chat">
+        <div id="chatHead">
+            <div>
+                <b>Atelier N°7 Support</b>
+                <span class="mono">Usually replies in seconds</span>
+            </div>
+            <button id="chatClose" aria-label="Close chat">×</button>
+        </div>
+        <div id="chatLog"></div>
+        <form id="chatForm">
+            <input id="chatInput" type="text" placeholder="Type your question…" autocomplete="off" required>
+            <button type="submit" aria-label="Send">→</button>
+        </form>
+    </div>
+
+    <script>
+        /* ================================================================
+                                                                           CONFIG — replace these three URLs with your own n8n webhooks.
+                                                                           See the notes block at the very end of this file for exactly
+                                                                           what each workflow node should look like.
+                                                                           ================================================================ */
+        const CONFIG = {
+            INVENTORY_WEBHOOK_URL: "https://hagar.app.n8n.cloud/webhook/inventory",
+            ORDER_WEBHOOK_URL: "https://hagar.app.n8n.cloud/webhook/new-order",
+            CHAT_WEBHOOK_URL: "https://hagar.app.n8n.cloud/webhook/chat" // custom webhook, expects {message, sessionId} -> {reply}
+        };
+
+        /* ---------------- demo catalog (fallback if no inventory webhook is set) ---------------- */
+        const FALLBACK_PRODUCTS = [{
+            id: "SKU-104",
+            name: "Raw Denim Jacket",
+            price: 128,
+            fabric: "denim",
+            stock: 6
+        }, {
+            id: "SKU-211",
+            name: "Wool Overcoat",
+            price: 214,
+            fabric: "wool",
+            stock: 2
+        }, {
+            id: "SKU-330",
+            name: "Cotton Poplin Shirt",
+            price: 64,
+            fabric: "cream",
+            stock: 14
+        }, {
+            id: "SKU-047",
+            name: "Pleated Midi Skirt",
+            price: 82,
+            fabric: "rust",
+            stock: 0
+        }, {
+            id: "SKU-158",
+            name: "Straight-Leg Trouser",
+            price: 96,
+            fabric: "olive",
+            stock: 9
+        }, {
+            id: "SKU-092",
+            name: "Ribbed Knit Tank",
+            price: 38,
+            fabric: "black",
+            stock: 21
+        }, {
+            id: "SKU-273",
+            name: "Linen Shirt Dress",
+            price: 110,
+            fabric: "cream",
+            stock: 4
+        }, {
+            id: "SKU-186",
+            name: "Brushed Wool Vest",
+            price: 74,
+            fabric: "olive",
+            stock: 0
+        }, ];
+
+        const FABRIC_COLORS = {
+            denim: "#2C3E63",
+            wool: "#5B5548",
+            cream: "#D8CFB8",
+            rust: "#A13D2C",
+            olive: "#5C6B4A",
+            black: "#1E1B16"
+        };
+
+        /* simple garment glyphs so the grid needs no external images */
+        const GLYPHS = {
+            jacket: `<path d="M30 15 L45 8 L50 18 L50 90 L15 90 L15 18 Z M15 18 L5 35 L12 42 L20 30 M50 18 L60 35 L53 42 L45 30" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linejoin="round"/>`,
+            coat: `<path d="M18 12 L32 6 L38 14 L38 92 L10 92 L10 22 Z M38 14 L52 6 L58 14 L58 92 L38 92 M10 22 L2 40 L9 46 L16 34 M58 22 L66 40 L59 46 L52 34" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linejoin="round"/>`,
+            shirt: `<path d="M25 10 L40 10 L44 16 L58 22 L52 34 L44 28 L44 90 L21 90 L21 28 L13 34 L7 22 L21 16 Z" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linejoin="round"/>`,
+            skirt: `<path d="M22 12 L46 12 L58 88 L10 88 Z" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linejoin="round"/><line x1="34" y1="12" x2="34" y2="88" stroke="currentColor" stroke-width="1.5" opacity="0.5"/>`,
+            trouser: `<path d="M20 8 L50 8 L52 90 L38 90 L35 40 L32 90 L18 90 Z" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linejoin="round"/>`,
+            tank: `<path d="M22 10 L26 20 L26 90 L46 90 L46 20 L50 10 L40 8 L36 14 L32 8 Z" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linejoin="round"/>`,
+            dress: `<path d="M24 10 L38 10 L42 16 L52 20 L47 30 L42 26 L48 90 L14 90 L20 26 L15 30 L10 20 L20 16 Z" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linejoin="round"/>`,
+            vest: `<path d="M22 12 L36 6 L50 12 L46 90 L26 90 Z M22 12 L14 40 L20 46 M50 12 L58 40 L52 46" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linejoin="round"/>`
+        };
+
+        function glyphFor(name) {
+            const n = name.toLowerCase();
+            if (n.includes("jacket")) return GLYPHS.jacket;
+            if (n.includes("coat")) return GLYPHS.coat;
+            if (n.includes("shirt") && n.includes("dress")) return GLYPHS.dress;
+            if (n.includes("dress")) return GLYPHS.dress;
+            if (n.includes("shirt")) return GLYPHS.shirt;
+            if (n.includes("skirt")) return GLYPHS.skirt;
+            if (n.includes("trouser") || n.includes("pant")) return GLYPHS.trouser;
+            if (n.includes("tank") || n.includes("knit")) return GLYPHS.tank;
+            if (n.includes("vest")) return GLYPHS.vest;
+            return GLYPHS.shirt;
+        }
+
+        let PRODUCTS = [];
+        let cart = {}; // id -> {product, qty}
+
+        /* ---------------- load inventory (from n8n, else fallback) ---------------- */
+        async function loadInventory() {
+            const note = document.getElementById('stockNote');
+            if (!CONFIG.INVENTORY_WEBHOOK_URL) {
+                PRODUCTS = FALLBACK_PRODUCTS;
+                note.textContent = "demo data — connect INVENTORY_WEBHOOK_URL for live stock";
+                renderGrid();
+                return;
+            }
+            try {
+                const res = await fetch(CONFIG.INVENTORY_WEBHOOK_URL);
+                const data = await res.json();
+                PRODUCTS = Array.isArray(data) ? data : FALLBACK_PRODUCTS;
+                note.textContent = "live from Google Sheet";
+            } catch (e) {
+                PRODUCTS = FALLBACK_PRODUCTS;
+                note.textContent = "couldn't reach inventory workflow — showing demo data";
+            }
+            renderGrid();
+        }
+
+        function renderGrid() {
+            const grid = document.getElementById('productGrid');
+            grid.innerHTML = PRODUCTS.map(p => {
+                        const color = FABRIC_COLORS[p.fabric] || '#5B5548';
+                        const inStock = Number(p.stock) > 0;
+                        return `
+    <div class="card">
+      <div class="swatch" style="background:${color}22;color:${color};">
+        ${inStock ? `<span class="stock-flag ok">${p.stock} left</span>` : `<span class="stock-flag">sold out</span>`}
+        <svg viewBox="0 0 70 100">${glyphFor(p.name)}</svg>
+      </div>
+      <div class="card-body">
+        <h3>${p.name}</h3>
+        <div class="card-meta"><span class="mono">${p.id}</span><span class="price">$${Number(p.price).toFixed(2)}</span></div>
+        <button class="add-btn" data-id="${p.id}" ${inStock ? '' : 'disabled'}>${inStock ? 'Add to bag' : 'Notify me'}</button>
+      </div>
+    </div>`;
+  }).join('');
+
+  grid.querySelectorAll('.add-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      if(btn.disabled) return;
+      addToCart(btn.dataset.id);
+    });
+  });
+}
+
+/* ---------------- cart logic ---------------- */
+function addToCart(id){
+  const product = PRODUCTS.find(p=>p.id===id);
+  if(!product) return;
+  if(!cart[id]) cart[id] = {product, qty:0};
+  cart[id].qty++;
+  renderCart();
+  openDrawer();
+}
+function changeQty(id, delta){
+  if(!cart[id]) return;
+  cart[id].qty += delta;
+  if(cart[id].qty <= 0) delete cart[id];
+  renderCart();
+}
+function renderCart(){
+  const items = Object.values(cart);
+  const list = document.getElementById('drawerItems');
+  const totalEl = document.getElementById('cartTotal');
+  const countEl = document.getElementById('cartCount');
+  const count = items.reduce((s,i)=>s+i.qty,0);
+  countEl.textContent = count;
+  if(items.length===0){
+    list.innerHTML = `<div class="drawer-empty">Your bag is empty.</div>`;
+  }else{
+    list.innerHTML = items.map(({product,qty})=>{
+      const color = FABRIC_COLORS[product.fabric] || '#5B5548';
+      return `
+      <div class="drawer-item">
+        <div class="swatch-mini" style="background:${color}22;color:${color};"><svg viewBox="0 0 70 100">${glyphFor(product.name)}</svg></div>
+        <div class="di-info">
+          <h4>${product.name}</h4>
+          <span class="mono">$${Number(product.price).toFixed(2)} · ${product.id}</span>
+          <div class="qty-row">
+            <button data-id="${product.id}" data-d="-1">−</button>
+            <span class="mono">${qty}</span>
+            <button data-id="${product.id}" data-d="1">+</button>
+          </div>
+        </div>
+      </div>`;
+    }).join('');
+    list.querySelectorAll('button[data-d]').forEach(b=>{
+      b.addEventListener('click', ()=>changeQty(b.dataset.id, Number(b.dataset.d)));
+    });
+  }
+  const total = items.reduce((s,{product,qty})=>s+product.price*qty,0);
+  totalEl.textContent = `$${total.toFixed(2)}`;
+}
+
+/* ---------------- drawer + modal open/close ---------------- */
+const overlay = document.getElementById('overlay');
+const drawer = document.getElementById('drawer');
+function openDrawer(){ drawer.classList.add('open'); overlay.classList.add('open'); }
+function closeDrawer(){ drawer.classList.remove('open'); overlay.classList.remove('open'); }
+document.getElementById('openCart').addEventListener('click', openDrawer);
+document.getElementById('closeDrawer').addEventListener('click', closeDrawer);
+overlay.addEventListener('click', ()=>{ closeDrawer(); closeCheckout(); });
+
+const checkoutModal = document.getElementById('checkoutModal');
+function openCheckout(){
+  if(Object.keys(cart).length===0) return;
+  checkoutModal.classList.add('open');
+  overlay.classList.add('open');
+}
+function closeCheckout(){ checkoutModal.classList.remove('open'); }
+document.getElementById('openCheckout').addEventListener('click', openCheckout);
+document.getElementById('closeCheckout').addEventListener('click', closeCheckout);
+
+/* ---------------- submit order to n8n ---------------- */
+document.getElementById('orderForm').addEventListener('submit', async (e)=>{
+  e.preventDefault();
+  const status = document.getElementById('formStatus');
+  const items = Object.values(cart).map(({product,qty})=>({
+    sku:product.id, name:product.name, price:product.price, qty
+  }));
+  const order = {
+    orderId: 'ORD-' + Date.now().toString(36).toUpperCase(),
+    customerName: document.getElementById('custName').value,
+    customerEmail: document.getElementById('custEmail').value,
+    customerPhone: document.getElementById('custPhone').value,
+    shippingAddress: document.getElementById('custAddress').value,
+    items,
+    orderTotal: items.reduce((s,i)=>s+i.price*i.qty,0),
+    createdAt: new Date().toISOString()
+  };
+
+  if(!CONFIG.ORDER_WEBHOOK_URL){
+    status.className = 'form-status err';
+    status.textContent = 'ORDER_WEBHOOK_URL is not set — add your n8n webhook in the config block.';
+    return;
+  }
+
+  status.className = 'form-status';
+  status.textContent = 'Sending order…';
+  try{
+    const res = await fetch(CONFIG.ORDER_WEBHOOK_URL, {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify(order)
+    });
+    if(!res.ok) throw new Error('bad response');
+    status.className = 'form-status ok';
+    status.textContent = 'Order placed — the prep team has been notified.';
+    cart = {};
+    renderCart();
+    setTimeout(()=>{ closeCheckout(); closeDrawer(); e.target.reset(); status.textContent=''; }, 1600);
+  }catch(err){
+    status.className = 'form-status err';
+    status.textContent = "Couldn't reach the order workflow. Check the webhook URL and try again.";
+  }
+});
+
+loadInventory();
+
+/* ================================================================
+   Chatbot widget — talks directly to the "Webhook - Chat Message"
+   trigger in n8n. That webhook expects a POST body of
+   { message, sessionId } and responds with { reply }.
+   (If you later swap in n8n's official Chat Trigger node + the
+   @n8n/chat package, replace this block with createChat({...}).)
+   ================================================================ */
+(function initChat(){
+  const launcher = document.getElementById('chatLauncher');
+  const panel = document.getElementById('chatPanel');
+  const log = document.getElementById('chatLog');
+  const form = document.getElementById('chatForm');
+  const input = document.getElementById('chatInput');
+  const sessionId = 'sess_' + Math.random().toString(36).slice(2);
+  let greeted = false;
+
+  function addMsg(text, who){
+    const el = document.createElement('div');
+    el.className = 'chat-msg ' + who;
+    el.textContent = text;
+    log.appendChild(el);
+    log.scrollTop = log.scrollHeight;
+    return el;
+  }
+
+  launcher.addEventListener('click', ()=>{
+    panel.classList.toggle('open');
+    if(!greeted){
+      addMsg("Hi! I'm the Atelier N°7 assistant — ask me about sizing, shipping, returns, or an order.", 'bot');
+      greeted = true;
+    }
+  });
+  document.getElementById('chatClose').addEventListener('click', ()=> panel.classList.remove('open'));
+
+  form.addEventListener('submit', async (e)=>{
+    e.preventDefault();
+    const text = input.value.trim();
+    if(!text) return;
+    addMsg(text, 'user');
+    input.value = '';
+
+    if(!CONFIG.CHAT_WEBHOOK_URL){
+      addMsg('Chat isn\'t connected yet — set CHAT_WEBHOOK_URL in the config.', 'bot');
+      return;
+    }
+    const pending = addMsg('…', 'bot pending');
+    try{
+      const res = await fetch(CONFIG.CHAT_WEBHOOK_URL, {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({ message: text, sessionId })
+      });
+      const data = await res.json();
+      pending.textContent = data.reply || "Sorry, I didn't catch that — could you rephrase?";
+      pending.classList.remove('pending');
+    }catch(err){
+      pending.textContent = "Couldn't reach support right now. Please try again shortly.";
+      pending.classList.remove('pending');
+    }
+  });
+})();
+    </script>
+
+    <!-- ================================================================
+NOTES FOR THE n8n SIDE (delete or keep as comments — up to you)
+
+1) INVENTORY_WEBHOOK_URL
+   Webhook (GET) -> Google Sheets (Read rows from your Inventory sheet)
+   -> Respond to Webhook, returning a JSON array like:
+   [{ "id":"SKU-104", "name":"Raw Denim Jacket", "price":128, "fabric":"denim", "stock":6 }, ...]
+
+2) ORDER_WEBHOOK_URL
+   Webhook (POST) -> Google Sheets (Append row to Orders sheet)
+   -> Telegram (Send message to the prep team's chat) -> Respond to Webhook (200 OK)
+   The posted body looks like: { customer:{name,email,phone,address}, items:[...], total, placed_at }
+
+3) Low-stock alerts (Step 3 of the brief)
+   Separate workflow: Schedule Trigger (every day at 9:00) -> Google Sheets (read Inventory)
+   -> IF stock < threshold -> Send Email to the stock manager.
+   This workflow doesn't need to touch the website at all.
+
+4) CHAT_WEBHOOK_URL
+   n8n Chat Trigger node's Production webhook URL, made public. That trigger can lead into
+   whatever logic you want (an AI Agent node, a simple FAQ lookup, escalation to a human, etc).
+================================================================ -->
+</body>
+
+</html>
