@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-
+ 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ATELIER No.7 — Ready-to-Wear</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Quicksand:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
         /* ============================================================
      CONFIG — plug in your n8n webhook URLs here. See notes at
@@ -15,19 +15,19 @@
      ============================================================ */
         
          :root {
-            --canvas: #0A0A14;
-            --canvas-dim: #14141F;
-            --ink: #F3F1FF;
-            --ink-soft: #A79FC9;
-            --indigo: #6D28D9;
-            --indigo-dark: #4C1D95;
-            --brass: #FFD23F;
-            --rust: #FF2E6D;
-            --line: rgba(243, 241, 255, 0.14);
-            --paper: #12121D;
-            --radius: 12px;
-            --cyan: #00E5FF;
-            --grad: linear-gradient(135deg, var(--rust), var(--indigo) 60%, var(--cyan));
+            --canvas: #FFF4F9;
+            --canvas-dim: #FFE5F1;
+            --ink: #6B3F58;
+            --ink-soft: #A9829B;
+            --indigo: #C994E8;
+            --indigo-dark: #A968D1;
+            --brass: #FFC93C;
+            --rust: #FF7CA3;
+            --line: rgba(107, 63, 88, 0.14);
+            --paper: #FFFFFF;
+            --radius: 22px;
+            --mint: #8FE3C7;
+            --grad: linear-gradient(135deg, var(--rust), var(--indigo) 55%, var(--brass));
         }
         
         * {
@@ -42,7 +42,7 @@
             margin: 0;
             background: var(--canvas);
             color: var(--ink);
-            font-family: 'Manrope', sans-serif;
+            font-family: 'Quicksand', sans-serif;
             -webkit-font-smoothing: antialiased;
         }
         
@@ -50,7 +50,7 @@
         h2,
         h3,
         .display {
-            font-family: 'Anton', sans-serif;
+            font-family: 'Fredoka', sans-serif;
             text-transform: uppercase;
             letter-spacing: 0.02em;
             font-weight: 800;
@@ -58,7 +58,7 @@
         }
         
         .mono {
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Space Mono', monospace;
         }
         
         a {
@@ -145,7 +145,7 @@
             align-items: center;
             justify-content: center;
             font-size: 11px;
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Space Mono', monospace;
         }
         /* ---------- hero ---------- */
         
@@ -160,7 +160,7 @@
         }
         
         .eyebrow {
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Space Mono', monospace;
             font-size: 12px;
             letter-spacing: 0.18em;
             text-transform: uppercase;
@@ -197,9 +197,9 @@
             padding: 22px 26px;
             position: relative;
             max-width: 230px;
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Space Mono', monospace;
             font-size: 12px;
-            box-shadow: 0 14px 34px rgba(109, 40, 217, 0.35), 0 0 26px rgba(0, 229, 255, 0.12);
+            box-shadow: 0 14px 30px rgba(201, 148, 232, 0.28), 0 4px 12px rgba(255, 124, 163, 0.18);
         }
         
         .hero-tag::before {
@@ -228,7 +228,7 @@
         
         .hero-tag b {
             display: block;
-            font-family: 'Anton', sans-serif;
+            font-family: 'Fredoka', sans-serif;
             font-size: 20px;
             margin-bottom: 6px;
         }
@@ -248,7 +248,7 @@
         }
         
         .section-head .count {
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Space Mono', monospace;
             font-size: 13px;
             color: var(--ink-soft);
         }
@@ -271,7 +271,7 @@
         
         .card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(0, 229, 255, 0.35), 0 0 24px rgba(255, 46, 109, 0.18);
+            box-shadow: 0 16px 30px rgba(255, 124, 163, 0.22), 0 4px 14px rgba(201, 148, 232, 0.16);
         }
         
         .swatch {
@@ -293,7 +293,7 @@
             position: absolute;
             top: 10px;
             left: 10px;
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Space Mono', monospace;
             font-size: 10px;
             letter-spacing: 0.06em;
             text-transform: uppercase;
@@ -328,7 +328,7 @@
         }
         
         .price {
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Space Mono', monospace;
             font-weight: 700;
             color: var(--ink);
         }
@@ -360,7 +360,7 @@
         .overlay {
             position: fixed;
             inset: 0;
-            background: rgba(5, 4, 12, 0.72);
+            background: rgba(107, 63, 88, 0.35);
             opacity: 0;
             pointer-events: none;
             transition: opacity .25s;
@@ -495,7 +495,7 @@
         }
         
         .total-row b {
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Space Mono', monospace;
             font-size: 18px;
         }
         
@@ -523,7 +523,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(5, 4, 12, 0.78);
+            background: rgba(107, 63, 88, 0.4);
             opacity: 0;
             pointer-events: none;
             transition: opacity .25s;
@@ -576,7 +576,7 @@
             border: 1px solid var(--line);
             background: var(--canvas);
             padding: 11px 12px;
-            font-family: 'Manrope', sans-serif;
+            font-family: 'Quicksand', sans-serif;
             font-size: 14px;
             border-radius: var(--radius);
         }
@@ -641,7 +641,7 @@
             align-items: center;
             justify-content: center;
             font-size: 22px;
-            box-shadow: 0 0 0 1px rgba(255,255,255,0.06), 0 10px 26px rgba(0,0,0,0.55), 0 0 28px rgba(255, 46, 109, 0.45);
+            box-shadow: 0 10px 26px rgba(255, 124, 163, 0.45), 0 0 0 4px rgba(255,255,255,0.6);
             cursor: pointer;
             border: none;
         }
@@ -657,7 +657,7 @@
             max-height: 75vh;
             background: var(--paper);
             border: 1px solid var(--line);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 0 1px rgba(0, 229, 255, 0.25);
+            box-shadow: 0 20px 44px rgba(201, 148, 232, 0.3), 0 6px 18px rgba(255, 124, 163, 0.2);
             display: none;
             flex-direction: column;
             overflow: hidden;
@@ -678,7 +678,7 @@
         
         #chatHead b {
             display: block;
-            font-family: 'Anton', sans-serif;
+            font-family: 'Fredoka', sans-serif;
             font-size: 18px;
             letter-spacing: 0.03em;
         }
@@ -738,7 +738,7 @@
             flex: 1;
             border: none;
             padding: 12px 14px;
-            font-family: 'Manrope', sans-serif;
+            font-family: 'Quicksand', sans-serif;
             font-size: 13.5px;
             background: var(--paper);
         }
@@ -795,7 +795,7 @@
         }
         
          :focus-visible {
-            outline: 2px solid var(--cyan);
+            outline: 2px solid var(--indigo);
             outline-offset: 2px;
         }
         
@@ -805,303 +805,306 @@
                 scroll-behavior: auto !important;
             }
         }
-
+ 
         /* ================================================================
-           SIGNATURE LAYER — modern anime HUD treatment
-           Kept additive/on top of the tokens above so nothing upstream
-           had to be rewritten: recolor the vars, then layer atmosphere,
-           speed-lines, corner brackets and glow on top.
+           SIGNATURE LAYER — kawaii girly treatment
+           Additive on top of the recolored tokens above: soft pastel
+           atmosphere, rounded bubbly shapes, bows, hearts and sparkles.
+           No licensed characters used anywhere — decorative only.
            ================================================================ */
-
+ 
         body {
             background-color: var(--canvas);
             background-image:
-                radial-gradient(circle at 12% -8%, rgba(255, 46, 109, 0.20), transparent 42%),
-                radial-gradient(circle at 92% 6%, rgba(0, 229, 255, 0.16), transparent 40%),
-                radial-gradient(circle at 50% 118%, rgba(109, 40, 217, 0.22), transparent 46%),
-                radial-gradient(rgba(243, 241, 255, 0.05) 1px, transparent 1px);
+                radial-gradient(circle at 10% -6%, rgba(255, 124, 163, 0.22), transparent 42%),
+                radial-gradient(circle at 92% 4%, rgba(201, 148, 232, 0.20), transparent 40%),
+                radial-gradient(circle at 50% 118%, rgba(143, 227, 199, 0.18), transparent 46%),
+                radial-gradient(rgba(255, 124, 163, 0.10) 2px, transparent 2px);
             background-repeat: no-repeat, no-repeat, no-repeat, repeat;
-            background-size: auto, auto, auto, 15px 15px;
+            background-size: auto, auto, auto, 26px 26px;
             background-attachment: fixed, fixed, fixed, fixed;
         }
-
+ 
         header {
-            background: rgba(10, 10, 20, 0.72);
-            backdrop-filter: blur(10px) saturate(1.3);
-            -webkit-backdrop-filter: blur(10px) saturate(1.3);
+            background: rgba(255, 244, 249, 0.82);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-bottom: 2px dotted var(--line);
         }
-
-        .logo {
-            text-shadow: 0 0 22px rgba(0, 229, 255, 0.25);
+ 
+        .logo::after {
+            content: ' 💗';
+            font-size: 0.6em;
         }
-
-        .logo span {
-            text-shadow: 0 0 16px rgba(255, 46, 109, 0.65);
-        }
-
+ 
         .nav-links a {
             position: relative;
-        }
-
-        .nav-links a:hover {
-            color: var(--cyan);
-            border-color: transparent;
-            text-shadow: 0 0 10px rgba(0, 229, 255, 0.55);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            right: 100%;
-            bottom: -3px;
-            height: 2px;
-            background: var(--grad);
-            transition: right 0.25s ease;
-        }
-
-        .nav-links a:hover::after {
-            right: 0;
-        }
-
-        .cart-btn {
-            border-color: rgba(243, 241, 255, 0.3);
             border-radius: 999px;
+            padding: 6px 12px !important;
         }
-
+ 
+        .nav-links a:hover {
+            background: var(--canvas-dim);
+            border-color: transparent;
+        }
+ 
+        .cart-btn {
+            border-radius: 999px;
+            border-color: var(--indigo);
+        }
+ 
         .cart-btn:hover {
-            border-color: var(--cyan);
-            box-shadow: 0 0 16px rgba(0, 229, 255, 0.3);
+            background: var(--canvas-dim);
         }
-
+ 
         .cart-count {
-            box-shadow: 0 0 12px rgba(255, 46, 109, 0.7);
+            box-shadow: 0 0 0 3px rgba(255, 124, 163, 0.25);
         }
-
-        /* ---- hero: speed-lines + gradient glow washing in from the edges ---- */
+ 
+        /* ---- hero: soft floating cloud blobs ---- */
         .hero {
             position: relative;
             overflow: hidden;
         }
-
+ 
         .hero::before {
-            content: '';
+            content: '☁️';
             position: absolute;
-            inset: -25% -10%;
-            background:
-                repeating-linear-gradient(115deg, rgba(255, 46, 109, 0.08) 0 2px, transparent 2px 42px),
-                repeating-linear-gradient(65deg, rgba(0, 229, 255, 0.07) 0 2px, transparent 2px 48px);
-            -webkit-mask-image: radial-gradient(ellipse 60% 55% at 28% 42%, #000 0%, transparent 72%);
-            mask-image: radial-gradient(ellipse 60% 55% at 28% 42%, #000 0%, transparent 72%);
-            pointer-events: none;
-            z-index: 0;
+            top: 6%;
+            right: 6%;
+            font-size: 64px;
+            opacity: 0.55;
+            filter: blur(0.3px);
+            animation: floaty 6s ease-in-out infinite;
         }
-
+ 
+        .hero::after {
+            content: '☁️';
+            position: absolute;
+            bottom: 12%;
+            left: 2%;
+            font-size: 40px;
+            opacity: 0.4;
+            animation: floaty 7s ease-in-out infinite reverse;
+        }
+ 
+        @keyframes floaty {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-14px); }
+        }
+ 
         .hero>* {
             position: relative;
             z-index: 1;
         }
-
+ 
         .eyebrow {
-            color: var(--cyan);
-            text-shadow: 0 0 10px rgba(0, 229, 255, 0.4);
+            color: var(--indigo-dark);
         }
-
+ 
         .hero-tag {
-            background: linear-gradient(var(--paper), var(--paper)) padding-box, var(--grad) border-box;
-            border: 1px solid transparent;
-        }
-
-        .hero-tag::before,
-        .hero-tag::after {
-            background: none;
-            border-radius: 0;
-            width: 16px;
-            height: 16px;
-        }
-
-        .hero-tag::before {
-            top: -8px;
-            left: -8px;
-            border: 2px solid var(--cyan);
-            border-right: none;
-            border-bottom: none;
-        }
-
-        .hero-tag::after {
-            top: auto;
-            bottom: -8px;
-            left: auto;
-            right: -8px;
+            background: var(--paper);
             border: 2px solid var(--rust);
-            border-left: none;
-            border-top: none;
-            box-shadow: none;
+            border-radius: calc(var(--radius) * 0.8);
         }
-
+ 
+        .hero-tag::before {
+            content: '🎀';
+            background: none;
+            border: none;
+            border-radius: 0;
+            width: auto;
+            height: auto;
+            top: -18px;
+            left: 14px;
+            font-size: 26px;
+        }
+ 
+        .hero-tag::after {
+            content: '✨';
+            background: none;
+            border: none;
+            border-radius: 0;
+            width: auto;
+            height: auto;
+            top: auto;
+            left: auto;
+            bottom: -14px;
+            right: 10px;
+            box-shadow: none;
+            font-size: 20px;
+        }
+ 
         .hero-tag b {
             background: var(--grad);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
         }
-
-        /* ---- section headers: small power-dot instead of a bare rule ---- */
+ 
+        /* ---- section headers: heart bullet instead of a bare rule ---- */
         .section-head {
             position: relative;
+            border-top-style: dotted;
         }
-
+ 
         .section-head::before {
-            content: '';
+            content: '💖';
             position: absolute;
-            top: -1px;
+            top: -19px;
             left: 0;
-            width: 46px;
-            height: 3px;
-            background: var(--grad);
-            box-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
+            font-size: 15px;
         }
-
-        /* ---- product cards: glow border on hover ---- */
+ 
+        /* ---- product cards: bubbly, bouncy on hover ---- */
         .card {
             border-radius: var(--radius);
             overflow: hidden;
-            background: linear-gradient(var(--paper), var(--paper)) padding-box, rgba(243, 241, 255, 0.12) border-box;
-            border: 1px solid transparent;
+            border: 2px solid var(--line);
         }
-
+ 
         .card:hover {
-            background: linear-gradient(var(--paper), var(--paper)) padding-box, var(--grad) border-box;
+            transform: translateY(-6px) rotate(-0.6deg);
+            border-color: var(--rust);
         }
-
+ 
         .swatch {
             position: relative;
         }
-
+ 
         .swatch::before {
             content: '';
             position: absolute;
             inset: 0;
-            background-image: radial-gradient(rgba(243, 241, 255, 0.14) 1px, transparent 1px);
-            background-size: 10px 10px;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.5) 2px, transparent 2px);
+            background-size: 16px 16px;
         }
-
+ 
         .swatch svg {
             position: relative;
             z-index: 1;
-            filter: drop-shadow(0 0 10px rgba(0, 229, 255, 0.18));
         }
-
+ 
         .stock-flag {
-            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
             border-radius: 999px;
+            font-weight: 700;
         }
-
+ 
         .price {
-            color: var(--brass);
+            color: var(--indigo-dark);
         }
-
+ 
         .add-btn {
             border-radius: 999px;
+            font-weight: 700;
         }
-
+ 
         .add-btn:hover {
             background: var(--grad);
-            color: #fff;
+            transform: scale(1.02);
         }
-
-        /* ---- drawer / modal: glowing edge instead of a flat line ---- */
+ 
+        /* ---- drawer / modal: rounded and ribboned ---- */
         .drawer {
-            border-left: 1px solid transparent;
-            background: linear-gradient(var(--paper), var(--paper)) padding-box, linear-gradient(180deg, var(--rust), var(--indigo)) border-box;
-            box-shadow: -20px 0 60px rgba(0, 0, 0, 0.55);
+            border-left: 3px dotted var(--rust);
+            border-radius: var(--radius) 0 0 var(--radius);
         }
-
-        .modal-card {
+ 
+        .drawer-item .swatch-mini,
+        .modal-card,
+        #chatPanel {
             border-radius: var(--radius);
-            border: 1px solid rgba(243, 241, 255, 0.1);
-            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.6), 0 0 40px rgba(109, 40, 217, 0.25);
         }
-
+ 
         .checkout-btn,
-        .qty-row button {
+        .qty-row button,
+        #chatForm input {
             border-radius: 999px;
         }
-
+ 
         .checkout-btn {
             background: var(--grad);
+            font-weight: 700;
         }
-
+ 
         .checkout-btn:hover {
-            filter: brightness(1.12);
+            transform: scale(1.02);
         }
-
+ 
         .field input,
         .field textarea {
-            border-radius: calc(var(--radius) * 0.6);
+            border-radius: calc(var(--radius) * 0.55);
+            border-color: var(--line);
         }
-
+ 
         .field input:focus,
         .field textarea:focus {
             outline: none;
-            border-color: var(--cyan);
-            box-shadow: 0 0 0 3px rgba(0, 229, 255, 0.18);
+            border-color: var(--rust);
+            box-shadow: 0 0 0 3px rgba(255, 124, 163, 0.2);
         }
-
-        /* ---- chat widget: pulsing launcher + gradient header ---- */
+ 
+        .modal-close,
+        .drawer-head button {
+            background: var(--canvas-dim);
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+ 
+        /* ---- chat widget: bow launcher + soft bubble panel ---- */
         #chatLauncher {
             background: var(--grad);
-            animation: launcherPulse 2.6s ease-in-out infinite;
+            animation: launcherBounce 2.4s ease-in-out infinite;
         }
-
-        @keyframes launcherPulse {
-            0%,
-            100% {
-                box-shadow: 0 0 0 0 rgba(255, 46, 109, 0.45), 0 10px 26px rgba(0, 0, 0, 0.55);
-            }
-            50% {
-                box-shadow: 0 0 0 10px rgba(255, 46, 109, 0), 0 10px 26px rgba(0, 0, 0, 0.55);
-            }
+ 
+        @keyframes launcherBounce {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-5px) scale(1.05); }
         }
-
-        #chatPanel {
-            border-radius: var(--radius);
-            border: 1px solid rgba(243, 241, 255, 0.1);
-        }
-
+ 
         #chatHead {
             background: var(--grad);
+            border-radius: var(--radius) var(--radius) 0 0;
         }
-
+ 
+        .chat-msg {
+            border-radius: 16px;
+        }
+ 
         .chat-msg.bot {
-            border: 1px solid rgba(243, 241, 255, 0.08);
+            border: 1px solid var(--line);
         }
-
+ 
         .chat-msg.user {
             background: var(--grad);
         }
-
+ 
         #chatForm button {
             background: var(--grad);
             color: #fff;
-            border-radius: 0;
         }
-
+ 
         ::selection {
             background: var(--rust);
             color: #fff;
         }
-
+ 
         @media (prefers-reduced-motion: reduce) {
-            #chatLauncher {
+            #chatLauncher,
+            .hero::before,
+            .hero::after {
                 animation: none !important;
             }
         }
     </style>
 </head>
-
+ 
 <body>
-
+ 
     <header>
         <nav class="nav">
             <div class="logo display">ATELIER <span>N°7</span></div>
@@ -1115,18 +1118,18 @@
     </button>
         </nav>
     </header>
-
+ 
     <section class="hero wrap" style="padding-left:0;padding-right:0;">
         <div>
-            <span class="eyebrow">SS26 CAPSULE — CUT TO ORDER</span>
+            <span class="eyebrow">✨ SS26 CAPSULE — CUT TO ORDER</span>
             <h1>Wardrobe<br>staples, <em>made<br>to last.</em></h1>
             <p>Six pieces, honestly priced, cut from fabric we're proud to name. Stock updates live from our own inventory floor — no phantom sizes, no waitlists.</p>
         </div>
         <div class="hero-tag">
-            <b>LIVE FEED ⚡</b> STOCK: LIVE SYNC<br> ORDERS: NOTIFIED IN REAL TIME<br> SUPPORT: CHAT, LOWER RIGHT
+            <b>CARE LABEL 🎀</b> STOCK: LIVE SYNC<br> ORDERS: NOTIFIED IN REAL TIME<br> SUPPORT: CHAT, LOWER RIGHT
         </div>
     </section>
-
+ 
     <div class="wrap" id="shop">
         <div class="section-head">
             <h2>The Rack</h2>
@@ -1136,14 +1139,14 @@
             <!-- injected by JS -->
         </div>
     </div>
-
+ 
     <div class="wrap" id="about" style="padding-bottom:20px;">
         <div class="section-head" style="margin-top:20px;">
             <h2>Fabric &amp; Care</h2>
         </div>
         <p style="max-width:60ch;color:var(--ink-soft);line-height:1.7;">Every piece is finished in small batches so our stock sheet stays honest — what you see in the rack above is checked against our floor inventory, not a forecast. Machine wash cold, hang to dry, and it'll outlast the season.</p>
     </div>
-
+ 
     <footer id="contact">
         <div>
             <div class="logo display" style="font-size:20px;">ATELIER <span>N°7</span></div>
@@ -1151,7 +1154,7 @@
         </div>
         <div class="mono">© 2026 Atelier N°7. Built for the automation final project.</div>
     </footer>
-
+ 
     <!-- ================= CART DRAWER ================= -->
     <div class="overlay" id="overlay"></div>
     <aside class="drawer" id="drawer" role="dialog" aria-label="Shopping bag">
@@ -1165,7 +1168,7 @@
             <button class="checkout-btn" id="openCheckout">Checkout</button>
         </div>
     </aside>
-
+ 
     <!-- ================= CHECKOUT MODAL ================= -->
     <div class="modal" id="checkoutModal" role="dialog" aria-label="Checkout">
         <div class="modal-card">
@@ -1182,9 +1185,9 @@
             </form>
         </div>
     </div>
-
+ 
     <!-- ================= SUPPORT CHAT WIDGET ================= -->
-    <div id="chatLauncher" aria-label="Open support chat">💬</div>
+    <div id="chatLauncher" aria-label="Open support chat">🎀</div>
     <div id="chatPanel" role="dialog" aria-label="Support chat">
         <div id="chatHead">
             <div>
@@ -1199,7 +1202,7 @@
             <button type="submit" aria-label="Send">→</button>
         </form>
     </div>
-
+ 
     <script>
         /* ================================================================
                                                                            CONFIG — replace these three URLs with your own n8n webhooks.
@@ -1211,7 +1214,7 @@
             ORDER_WEBHOOK_URL: "https://hagar.app.n8n.cloud/webhook/new-order",
             CHAT_WEBHOOK_URL: "https://hagar.app.n8n.cloud/webhook/chat" // custom webhook, expects {message, sessionId} -> {reply}
         };
-
+ 
         /* ---------------- demo catalog (fallback if no inventory webhook is set) ---------------- */
         const FALLBACK_PRODUCTS = [{
             id: "SKU-104",
@@ -1262,16 +1265,16 @@
             fabric: "olive",
             stock: 0
         }, ];
-
+ 
         const FABRIC_COLORS = {
-            denim: "#00E5FF",
-            wool: "#A79FC9",
-            cream: "#FFD23F",
-            rust: "#FF2E6D",
-            olive: "#7CFFB2",
-            black: "#F3F1FF"
+            denim: "#C994E8",
+            wool: "#A9829B",
+            cream: "#FFC93C",
+            rust: "#FF7CA3",
+            olive: "#8FE3C7",
+            black: "#6B3F58"
         };
-
+ 
         /* simple garment glyphs so the grid needs no external images */
         const GLYPHS = {
             jacket: `<path d="M30 15 L45 8 L50 18 L50 90 L15 90 L15 18 Z M15 18 L5 35 L12 42 L20 30 M50 18 L60 35 L53 42 L45 30" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linejoin="round"/>`,
@@ -1283,7 +1286,7 @@
             dress: `<path d="M24 10 L38 10 L42 16 L52 20 L47 30 L42 26 L48 90 L14 90 L20 26 L15 30 L10 20 L20 16 Z" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linejoin="round"/>`,
             vest: `<path d="M22 12 L36 6 L50 12 L46 90 L26 90 Z M22 12 L14 40 L20 46 M50 12 L58 40 L52 46" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linejoin="round"/>`
         };
-
+ 
         function glyphFor(name) {
             const n = name.toLowerCase();
             if (n.includes("jacket")) return GLYPHS.jacket;
@@ -1297,10 +1300,10 @@
             if (n.includes("vest")) return GLYPHS.vest;
             return GLYPHS.shirt;
         }
-
+ 
         let PRODUCTS = [];
         let cart = {}; // id -> {product, qty}
-
+ 
         /* ---------------- load inventory (from n8n, else fallback) ---------------- */
         async function loadInventory() {
             const note = document.getElementById('stockNote');
@@ -1321,7 +1324,7 @@
             }
             renderGrid();
         }
-
+ 
         function renderGrid() {
             const grid = document.getElementById('productGrid');
             grid.innerHTML = PRODUCTS.map(p => {
@@ -1340,7 +1343,7 @@
       </div>
     </div>`;
   }).join('');
-
+ 
   grid.querySelectorAll('.add-btn').forEach(btn=>{
     btn.addEventListener('click', ()=>{
       if(btn.disabled) return;
@@ -1348,7 +1351,7 @@
     });
   });
 }
-
+ 
 /* ---------------- cart logic ---------------- */
 function addToCart(id){
   const product = PRODUCTS.find(p=>p.id===id);
@@ -1397,7 +1400,7 @@ function renderCart(){
   const total = items.reduce((s,{product,qty})=>s+product.price*qty,0);
   totalEl.textContent = `$${total.toFixed(2)}`;
 }
-
+ 
 /* ---------------- drawer + modal open/close ---------------- */
 const overlay = document.getElementById('overlay');
 const drawer = document.getElementById('drawer');
@@ -1406,7 +1409,7 @@ function closeDrawer(){ drawer.classList.remove('open'); overlay.classList.remov
 document.getElementById('openCart').addEventListener('click', openDrawer);
 document.getElementById('closeDrawer').addEventListener('click', closeDrawer);
 overlay.addEventListener('click', ()=>{ closeDrawer(); closeCheckout(); });
-
+ 
 const checkoutModal = document.getElementById('checkoutModal');
 function openCheckout(){
   if(Object.keys(cart).length===0) return;
@@ -1416,7 +1419,7 @@ function openCheckout(){
 function closeCheckout(){ checkoutModal.classList.remove('open'); }
 document.getElementById('openCheckout').addEventListener('click', openCheckout);
 document.getElementById('closeCheckout').addEventListener('click', closeCheckout);
-
+ 
 /* ---------------- submit order to n8n ---------------- */
 document.getElementById('orderForm').addEventListener('submit', async (e)=>{
   e.preventDefault();
@@ -1434,13 +1437,13 @@ document.getElementById('orderForm').addEventListener('submit', async (e)=>{
     orderTotal: items.reduce((s,i)=>s+i.price*i.qty,0),
     createdAt: new Date().toISOString()
   };
-
+ 
   if(!CONFIG.ORDER_WEBHOOK_URL){
     status.className = 'form-status err';
     status.textContent = 'ORDER_WEBHOOK_URL is not set — add your n8n webhook in the config block.';
     return;
   }
-
+ 
   status.className = 'form-status';
   status.textContent = 'Sending order…';
   try{
@@ -1460,9 +1463,9 @@ document.getElementById('orderForm').addEventListener('submit', async (e)=>{
     status.textContent = "Couldn't reach the order workflow. Check the webhook URL and try again.";
   }
 });
-
+ 
 loadInventory();
-
+ 
 /* ================================================================
    Chatbot widget — talks directly to the "Webhook - Chat Message"
    trigger in n8n. That webhook expects a POST body of
@@ -1478,7 +1481,7 @@ loadInventory();
   const input = document.getElementById('chatInput');
   const sessionId = 'sess_' + Math.random().toString(36).slice(2);
   let greeted = false;
-
+ 
   function addMsg(text, who){
     const el = document.createElement('div');
     el.className = 'chat-msg ' + who;
@@ -1487,7 +1490,7 @@ loadInventory();
     log.scrollTop = log.scrollHeight;
     return el;
   }
-
+ 
   launcher.addEventListener('click', ()=>{
     panel.classList.toggle('open');
     if(!greeted){
@@ -1496,14 +1499,14 @@ loadInventory();
     }
   });
   document.getElementById('chatClose').addEventListener('click', ()=> panel.classList.remove('open'));
-
+ 
   form.addEventListener('submit', async (e)=>{
     e.preventDefault();
     const text = input.value.trim();
     if(!text) return;
     addMsg(text, 'user');
     input.value = '';
-
+ 
     if(!CONFIG.CHAT_WEBHOOK_URL){
       addMsg('Chat isn\'t connected yet — set CHAT_WEBHOOK_URL in the config.', 'bot');
       return;
@@ -1525,29 +1528,29 @@ loadInventory();
   });
 })();
     </script>
-
+ 
     <!-- ================================================================
 NOTES FOR THE n8n SIDE (delete or keep as comments — up to you)
-
+ 
 1) INVENTORY_WEBHOOK_URL
    Webhook (GET) -> Google Sheets (Read rows from your Inventory sheet)
    -> Respond to Webhook, returning a JSON array like:
    [{ "id":"SKU-104", "name":"Raw Denim Jacket", "price":128, "fabric":"denim", "stock":6 }, ...]
-
+ 
 2) ORDER_WEBHOOK_URL
    Webhook (POST) -> Google Sheets (Append row to Orders sheet)
    -> Telegram (Send message to the prep team's chat) -> Respond to Webhook (200 OK)
    The posted body looks like: { customer:{name,email,phone,address}, items:[...], total, placed_at }
-
+ 
 3) Low-stock alerts (Step 3 of the brief)
    Separate workflow: Schedule Trigger (every day at 9:00) -> Google Sheets (read Inventory)
    -> IF stock < threshold -> Send Email to the stock manager.
    This workflow doesn't need to touch the website at all.
-
+ 
 4) CHAT_WEBHOOK_URL
    n8n Chat Trigger node's Production webhook URL, made public. That trigger can lead into
    whatever logic you want (an AI Agent node, a simple FAQ lookup, escalation to a human, etc).
 ================================================================ -->
 </body>
-
+ 
 </html>
